@@ -1,5 +1,7 @@
 package com.viraszko.supermarket.pricing.support;
 
+import com.viraszko.supermarket.pricing.Pricing;
+
 /**
  * Created by Laz on 14/06/2017.
  */
