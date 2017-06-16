@@ -40,16 +40,17 @@ public class PricingSteps {
         }
     }
 
-    @When("^I receive a list of ([^\"]*)$")
-    public void addSelectedProductsToPricing(List<String> selectedProductsName) throws Throwable {
+    @When("^I receive a list of (.*)$")
+    public void addSelectedProductsToPricing(List<String> selectedProductsNameAmount) throws Throwable {
         List<Product> selectedProducts = new ArrayList<>();
-        for (String selectedProductName : selectedProductsName) {
-            selectedProducts.add(new Product(selectedProductName, pricelist.get(selectedProductName)));
+        for (String selectedProductNameAmount : selectedProductsNameAmount) {
+            String nameAmount[] = selectedProductNameAmount.split("\\s*-\\s*");
+            selectedProducts.add(new Product(nameAmount[0], pricelist.get(nameAmount[0]), nameAmount.length > 1 ? Double.parseDouble(nameAmount[1]) : 1));
         }
         pricing.addProducts(selectedProducts);
     }
 
-    @Then("^I want to create a pricing summary containing ([^\"]*), ([^\"]*), ([^\"]*), ([^\"]*), ([^\"]*)$")
+    @Then("^I want to create a pricing summary containing (.*), (.*), (.*), (.*), (.*)$")
     public void createPricingSummary(List<Double> pricelist, double subtotal, @Transform(StringToMapConverter.class ) Map<String, Double> savings, double totalSavings, double totalToPay) throws Throwable {
 
         PricingSummary pricingSummary = pricing.createPricingSummary();
