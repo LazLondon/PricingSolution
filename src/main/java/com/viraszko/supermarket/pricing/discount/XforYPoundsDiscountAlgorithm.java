@@ -1,4 +1,7 @@
-package com.viraszko.supermarket.pricing;
+package com.viraszko.supermarket.pricing.discount;
+
+import com.viraszko.supermarket.pricing.Product;
+import net.jcip.annotations.Immutable;
 
 import java.util.List;
 import java.util.function.BiFunction;
@@ -6,11 +9,12 @@ import java.util.function.BiFunction;
 /**
  * Created by Laz on 17/06/2017.
  */
-public class XforYDiscountAlgorithm implements BiFunction<Product, List<Product>, Double> {
+@Immutable
+public class XforYPoundsDiscountAlgorithm implements BiFunction<Product, List<Product>, Double> {
     private long x;
-    private long y;
+    private double y;
 
-    public XforYDiscountAlgorithm(long x, long y) {
+    public XforYPoundsDiscountAlgorithm(long x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -19,6 +23,6 @@ public class XforYDiscountAlgorithm implements BiFunction<Product, List<Product>
     public Double apply(Product discountedProduct, List<Product> selectedProducts) {
         long discountedProductsCandidate = selectedProducts.stream().filter(p -> p.equals(discountedProduct)).count();
         long discountCanBeAppliedCount = (long) (discountedProductsCandidate / x);
-        return discountCanBeAppliedCount * (x - y) * discountedProduct.getPrice();
+        return discountCanBeAppliedCount * (x * discountedProduct.getPrice() - y);
     }
 }

@@ -13,11 +13,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 @Immutable
 public class PricingSummary {
-    private List<Product> pricelist;
-    private double subtotal;
-    private Map<String, Double> savings;
-    private double totalSavings;
-    private double totalToPay;
+    private final List<Product> pricelist;
+    private final double subtotal;
+    private final Map<String, Double> savings;
+    private final double totalSavings;
+    private final double totalToPay;
 
     private PricingSummary(List<Product> pricelist, double subtotal, Map<String, Double> savings, double totalSavings, double totalToPay) {
         this.pricelist = new CopyOnWriteArrayList(pricelist);

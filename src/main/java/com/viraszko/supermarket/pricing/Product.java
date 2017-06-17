@@ -1,19 +1,19 @@
 package com.viraszko.supermarket.pricing;
 
-import net.jcip.annotations.ThreadSafe;
+import net.jcip.annotations.Immutable;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import static com.viraszko.supermarket.pricing.utility.Utility.round;
+
 
 /**
  * Created by Laz on 14/06/2017.
  */
-@ThreadSafe
+@Immutable
 public class Product {
     // TODO name is treated as unique ID !!!
-    private String name;
-    private volatile double unitPrice;
-    private volatile double amount;
+    private final String name;
+    private final double unitPrice;
+    private final double amount;
 
     public Product(String name, double unitPrice) {
         this(name, unitPrice, 1);
@@ -35,7 +35,9 @@ public class Product {
         return name;
     }
 
-    public double getUnitPrice() {return unitPrice;}
+    public double getUnitPrice() {
+        return unitPrice;
+    }
 
     public double getPrice() {
         return round(unitPrice * amount, 2);
@@ -43,14 +45,6 @@ public class Product {
 
     public double getAmount() {
         return amount;
-    }
-
-    private static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(places, RoundingMode.HALF_UP);
-        return bd.doubleValue();
     }
 
     @Override
