@@ -10,8 +10,8 @@ import java.math.RoundingMode;
  */
 @ThreadSafe
 public class Product {
+    // TODO name is treated as unique ID !!!
     private String name;
-    private volatile double price;
     private volatile double unitPrice;
     private volatile double amount;
 
@@ -23,6 +23,12 @@ public class Product {
         this.name = name;
         this.unitPrice = unitPrice;
         this.amount = amount;
+    }
+
+    public Product(Product p) {
+        name = p.getName();
+        unitPrice = p.getUnitPrice();
+        amount = p.getAmount();
     }
 
     public String getName() {
@@ -47,4 +53,18 @@ public class Product {
         return bd.doubleValue();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        return name.equals(product.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
+    }
 }

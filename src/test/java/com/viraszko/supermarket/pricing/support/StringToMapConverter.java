@@ -12,10 +12,15 @@ public class StringToMapConverter extends Transformer<Map<String, Double>> {
     @Override
     public Map<String, Double> transform(String s) {
         Map<String, Double> map = new HashMap<>();
-        String keyValue[] = s.trim().split(" ");
-        String key = keyValue[0];
-        Double value = Double.valueOf(keyValue[1]);
-        map.put(key, value);
+
+        String discountsKeyValue[] = s.trim().split("===");
+
+        for (String discountKeyValue : discountsKeyValue) {
+            String keyValue[] = discountKeyValue.trim().split("->");
+            String key = keyValue[0].trim();
+            Double value = Double.valueOf(keyValue[1]);
+            map.put(key, value);
+        }
         return map;
     }
 }

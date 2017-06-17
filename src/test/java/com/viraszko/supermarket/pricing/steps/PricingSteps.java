@@ -1,8 +1,6 @@
 package com.viraszko.supermarket.pricing.steps;
 
-import com.viraszko.supermarket.pricing.Pricing;
-import com.viraszko.supermarket.pricing.PricingSummary;
-import com.viraszko.supermarket.pricing.Product;
+import com.viraszko.supermarket.pricing.*;
 import com.viraszko.supermarket.pricing.support.KnowsTheDomain;
 import com.viraszko.supermarket.pricing.support.StringToMapConverter;
 import cucumber.api.DataTable;
@@ -11,10 +9,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
@@ -61,5 +56,17 @@ public class PricingSteps {
         assertEquals(totalSavings, pricingSummary.getTotalSavings(), 0);
         assertEquals(totalToPay, pricingSummary.getTotalToPay(), 0);
 
+    }
+
+    @Given("^a list of discounts of type X for Y$")
+    public void addDiscountsXforYType(DataTable rawDiscounts) throws Throwable {
+        Set<Discount> discounts = new HashSet<>();
+        for (List<String> row : rawDiscounts.raw()) {
+            String productName = row.get(0);
+            String discountMessage = row.get(1);
+            String xy[] = discountMessage.split("for");
+            discounts.add(new Discount(new Product(productName, pricelist.get(productName)), discountMessage, new XforYDiscountAlgorithm(Long.parseLong(xy[0].trim()), Long.parseLong(xy[1].trim()))));
+        }
+        pricing.addDiscounts(discounts);
     }
 }
