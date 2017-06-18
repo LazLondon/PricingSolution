@@ -39,3 +39,8 @@ No logging, web, or persistance layer added, focusing on the created classes and
   
   Removing products to be priced and discounts are not implemented.
   Product Id (eg.: barcode) should be used instead of product name as unique identifier.
+  
+  <a href="https://scan.coverity.com/projects/lazlondon-pricingsolution">
+    <img alt="Coverity Scan Build Status"
+         src="https://scan.coverity.com/projects/12972/badge.svg"/>
+  </a>
