@@ -1,4 +1,4 @@
-package com.viraszko.supermarket.pricing.utility;
+package com.viraszko.supermarket.basket.utility;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

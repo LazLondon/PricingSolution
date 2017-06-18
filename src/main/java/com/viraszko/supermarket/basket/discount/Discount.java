@@ -1,6 +1,6 @@
-package com.viraszko.supermarket.pricing.discount;
+package com.viraszko.supermarket.basket.discount;
 
-import com.viraszko.supermarket.pricing.Product;
+import com.viraszko.supermarket.basket.Product;
 import net.jcip.annotations.Immutable;
 
 import java.util.List;
@@ -33,4 +33,12 @@ public class Discount {
         return algorithm.apply(product, products);
     }
 
+    @Override
+    public String toString() {
+        return "Discount{" +
+                "product=" + product +
+                ", message='" + message + '\'' +
+                ", algorithm=" + algorithm +
+                '}';
+    }
 }

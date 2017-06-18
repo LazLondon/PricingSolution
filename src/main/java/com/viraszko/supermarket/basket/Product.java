@@ -1,8 +1,8 @@
-package com.viraszko.supermarket.pricing;
+package com.viraszko.supermarket.basket;
 
 import net.jcip.annotations.Immutable;
 
-import static com.viraszko.supermarket.pricing.utility.Utility.round;
+import static com.viraszko.supermarket.basket.utility.Utility.round;
 
 
 /**
@@ -60,5 +60,14 @@ public class Product {
     @Override
     public int hashCode() {
         return name.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", amount=" + amount +
+                '}';
     }
 }

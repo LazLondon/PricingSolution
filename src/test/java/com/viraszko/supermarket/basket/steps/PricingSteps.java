@@ -1,11 +1,11 @@
-package com.viraszko.supermarket.pricing.steps;
+package com.viraszko.supermarket.basket.steps;
 
-import com.viraszko.supermarket.pricing.*;
-import com.viraszko.supermarket.pricing.discount.Discount;
-import com.viraszko.supermarket.pricing.discount.XforYDiscountAlgorithm;
-import com.viraszko.supermarket.pricing.discount.XforYPoundsDiscountAlgorithm;
-import com.viraszko.supermarket.pricing.support.KnowsTheDomain;
-import com.viraszko.supermarket.pricing.support.StringToMapConverter;
+import com.viraszko.supermarket.basket.*;
+import com.viraszko.supermarket.basket.discount.Discount;
+import com.viraszko.supermarket.basket.discount.XforYDiscountAlgorithm;
+import com.viraszko.supermarket.basket.discount.XforYPoundsDiscountAlgorithm;
+import com.viraszko.supermarket.basket.support.KnowsTheDomain;
+import com.viraszko.supermarket.basket.support.StringToMapConverter;
 import cucumber.api.DataTable;
 import cucumber.api.Transform;
 import cucumber.api.java.en.Given;
@@ -23,10 +23,10 @@ import static org.junit.Assert.assertEquals;
  */
 public class PricingSteps {
     Map<String, Double> pricelist;
-    private Pricing pricing;
+    private Basket basket;
 
     public PricingSteps(KnowsTheDomain helper) {
-        pricing = helper.getPricing();
+        basket = helper.getBasket();
     }
 
     @Given("^a list of products and their prices$")
@@ -46,13 +46,14 @@ public class PricingSteps {
             String nameAmount[] = selectedProductNameAmount.split("\\s*-\\s*");
             selectedProducts.add(new Product(nameAmount[0], pricelist.get(nameAmount[0]), nameAmount.length > 1 ? Double.parseDouble(nameAmount[1]) : 1));
         }
-        pricing.addProducts(selectedProducts);
+        basket.addProducts(selectedProducts);
     }
 
     @Then("^I want to create a pricing summary containing (.*), (.*), (.*), (.*), (.*)$")
     public void createPricingSummary(List<Double> pricelist, double subtotal, @Transform(StringToMapConverter.class ) Map<String, Double> savings, double totalSavings, double totalToPay) throws Throwable {
 
-        PricingSummary pricingSummary = pricing.createPricingSummary();
+        PricingSummary pricingSummary = basket.createPricingSummary();
+        System.out.println(pricingSummary);
 
         assertEquals(pricelist, pricingSummary.getPricelist().stream().map(Product::getPrice).collect(Collectors.toList()));
         assertEquals(subtotal, pricingSummary.getSubtotal(), 0);
@@ -80,6 +81,6 @@ public class PricingSteps {
 
             discounts.add(new Discount(new Product(productName, pricelist.get(productName)), discountMessage, algorithm));
         }
-        pricing.addDiscounts(discounts);
+        basket.addDiscounts(discounts);
     }
 }

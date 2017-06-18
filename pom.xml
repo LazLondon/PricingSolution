@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.viraszko.supermarket</groupId>
-  <artifactId>pricing</artifactId>
+  <artifactId>basket</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 

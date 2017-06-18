@@ -1,4 +1,4 @@
-package com.viraszko.supermarket.pricing;
+package com.viraszko.supermarket.basket;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
  * Created by Laz on 14/06/2017.
  */
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin="pretty", snippets=SnippetType.CAMELCASE, features ="src/test/resources/features", glue={"com.viraszko.supermarket.pricing.steps"})
+@CucumberOptions(plugin="pretty", snippets=SnippetType.CAMELCASE, features ="src/test/resources/features", glue={"com.viraszko.supermarket.basket.steps"})
 public class RunCukesTests {
 
 }

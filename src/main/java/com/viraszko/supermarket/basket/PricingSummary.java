@@ -1,4 +1,4 @@
-package com.viraszko.supermarket.pricing;
+package com.viraszko.supermarket.basket;
 
 import net.jcip.annotations.Immutable;
 
@@ -82,5 +82,16 @@ public class PricingSummary {
         public PricingSummary createPricingSummary() {
             return new PricingSummary(pricelist, subtotal, savings, totalSavings, totalToPay);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "PricingSummary{" +
+                "pricelist=" + pricelist +
+                ", subtotal=" + subtotal +
+                ", savings=" + savings +
+                ", totalSavings=" + totalSavings +
+                ", totalToPay=" + totalToPay +
+                '}';
     }
 }

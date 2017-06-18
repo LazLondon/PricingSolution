@@ -1,4 +1,4 @@
-package com.viraszko.supermarket.pricing.support;
+package com.viraszko.supermarket.basket.support;
 
 import cucumber.api.Transformer;
 

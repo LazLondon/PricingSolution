@@ -1,6 +1,6 @@
-package com.viraszko.supermarket.pricing.discount;
+package com.viraszko.supermarket.basket.discount;
 
-import com.viraszko.supermarket.pricing.Product;
+import com.viraszko.supermarket.basket.Product;
 import net.jcip.annotations.Immutable;
 
 import java.util.List;
@@ -24,5 +24,13 @@ public class XforYPoundsDiscountAlgorithm implements BiFunction<Product, List<Pr
         long discountedProductsCandidate = selectedProducts.stream().filter(p -> p.equals(discountedProduct)).count();
         long discountCanBeAppliedCount = (long) (discountedProductsCandidate / x);
         return discountCanBeAppliedCount * (x * discountedProduct.getPrice() - y);
+    }
+
+    @Override
+    public String toString() {
+        return "XforYPoundsDiscountAlgorithm{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }

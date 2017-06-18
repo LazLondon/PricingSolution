@@ -1,6 +1,6 @@
-package com.viraszko.supermarket.pricing;
+package com.viraszko.supermarket.basket;
 
-import com.viraszko.supermarket.pricing.discount.Discount;
+import com.viraszko.supermarket.basket.discount.Discount;
 import net.jcip.annotations.ThreadSafe;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static com.viraszko.supermarket.pricing.utility.Utility.round;
+import static com.viraszko.supermarket.basket.utility.Utility.round;
 import static java.util.stream.Collectors.summingDouble;
 import static java.util.stream.Collectors.toMap;
 
@@ -17,12 +17,12 @@ import static java.util.stream.Collectors.toMap;
  * Created by Laz on 14/06/2017.
  */
 @ThreadSafe
-public final class Pricing {
+public final class Basket {
     private List<Product> products;
     private Map<String, Double> savings;
     private Set<Discount> discounts;
 
-    public Pricing() {
+    public Basket() {
         products = new CopyOnWriteArrayList<>();
         savings = new ConcurrentHashMap<>();
         discounts = ConcurrentHashMap.newKeySet();
