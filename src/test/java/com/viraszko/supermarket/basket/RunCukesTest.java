@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
  * Created by Laz on 14/06/2017.
  */
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin="pretty", snippets=SnippetType.CAMELCASE, features ="src/test/resources/features", glue={"com.viraszko.supermarket.basket.steps"})
-public class RunCukesTests {
+@CucumberOptions(plugin={"pretty", "html:target/cucumber" }, snippets=SnippetType.CAMELCASE, features = "classpath:features/pricing.feature", glue="com.viraszko.supermarket.basket.steps")
+public class RunCukesTest {
 
 }
