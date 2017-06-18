@@ -11,8 +11,8 @@ import java.util.function.BiFunction;
  */
 @Immutable
 public class XforYDiscountAlgorithm implements BiFunction<Product, List<Product>, Double> {
-    private long x;
-    private long y;
+    private final long x;
+    private final long y;
 
     public XforYDiscountAlgorithm(long x, long y) {
         this.x = x;

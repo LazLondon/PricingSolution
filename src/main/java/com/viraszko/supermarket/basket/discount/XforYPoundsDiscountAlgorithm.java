@@ -11,8 +11,8 @@ import java.util.function.BiFunction;
  */
 @Immutable
 public class XforYPoundsDiscountAlgorithm implements BiFunction<Product, List<Product>, Double> {
-    private long x;
-    private double y;
+    private final long x;
+    private final double y;
 
     public XforYPoundsDiscountAlgorithm(long x, double y) {
         this.x = x;
@@ -22,7 +22,7 @@ public class XforYPoundsDiscountAlgorithm implements BiFunction<Product, List<Pr
     @Override
     public Double apply(Product discountedProduct, List<Product> selectedProducts) {
         long discountedProductsCandidate = selectedProducts.stream().filter(p -> p.equals(discountedProduct)).count();
-        long discountCanBeAppliedCount = (long) (discountedProductsCandidate / x);
+        long discountCanBeAppliedCount = discountedProductsCandidate / x;
         return discountCanBeAppliedCount * (x * discountedProduct.getPrice() - y);
     }
 

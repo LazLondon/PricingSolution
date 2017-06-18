@@ -29,3 +29,13 @@ The following receipt was used to capture the necessary data:
 BDD is used with DDD.
 
 No logging, web, or persistance layer added, focusing on the created classes and responsibilities. (SOLID principles)
+
+| REST Resource | URI           | What it does|
+  | ------------- | ------------- | ------------ |
+  | Product      | POST: /basket/products  | Add products to be priced, Basket.addProducts will be called
+  | Discount      | POST: /basket/discounts      |Add discounts to be priced, Basket.addDiscounts will be called
+  | Pricing Summary | GET: /basket/pricingsummary     |Getting the pricing summary depending on added products and discounts
+  
+  
+  Removing products to be priced and discounts are not implemented.
+  Product Id (eg.: barcode) should be used instead of product name as unique identifier.

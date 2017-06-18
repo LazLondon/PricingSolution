@@ -18,9 +18,9 @@ import static java.util.stream.Collectors.toMap;
  */
 @ThreadSafe
 public final class Basket {
-    private List<Product> products;
-    private Map<String, Double> savings;
-    private Set<Discount> discounts;
+    private final List<Product> products;
+    private final Map<String, Double> savings;
+    private final Set<Discount> discounts;
 
     public Basket() {
         products = new CopyOnWriteArrayList<>();
@@ -37,7 +37,7 @@ public final class Basket {
     }
 
     public PricingSummary createPricingSummary() {
-        double subTotal = products.stream().collect(summingDouble(Product::getPrice));
+        double subTotal = products.stream().mapToDouble(Product::getPrice).sum();
 
         Map<String, Double> tempSavings = discounts.stream().collect(toMap(d -> d.getProduct().getName() + " " + d.getMessage(), d -> d.savings(products)));
         tempSavings.forEach((k, v) -> {
@@ -49,7 +49,7 @@ public final class Basket {
             savings.put("-", 0.0);
         }
 
-        double totalSavings = savings.values().stream().collect(summingDouble(s -> s));
+        double totalSavings = savings.values().stream().mapToDouble(s -> s).sum();
 
         return new PricingSummary.Builder().setPricelist(products).setSubtotal(subTotal).
                 setSavings(savings).setTotalSavings(totalSavings).setTotalToPay(subTotal - totalSavings).createPricingSummary();

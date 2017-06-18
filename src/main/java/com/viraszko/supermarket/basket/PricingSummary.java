@@ -20,7 +20,7 @@ public class PricingSummary {
     private final double totalToPay;
 
     private PricingSummary(List<Product> pricelist, double subtotal, Map<String, Double> savings, double totalSavings, double totalToPay) {
-        this.pricelist = new CopyOnWriteArrayList(pricelist);
+        this.pricelist = new CopyOnWriteArrayList<>(pricelist);
         this.subtotal = subtotal;
         this.savings = new ConcurrentHashMap<>(savings);
         this.totalSavings = totalSavings;

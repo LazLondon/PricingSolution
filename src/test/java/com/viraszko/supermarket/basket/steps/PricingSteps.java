@@ -22,8 +22,8 @@ import static org.junit.Assert.assertEquals;
  * Created by Laz on 14/06/2017.
  */
 public class PricingSteps {
-    Map<String, Double> pricelist;
-    private Basket basket;
+    private Map<String, Double> pricelist;
+    private final Basket basket;
 
     public PricingSteps(KnowsTheDomain helper) {
         basket = helper.getBasket();
