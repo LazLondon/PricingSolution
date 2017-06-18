@@ -1,4 +1,4 @@
-Feature: As a Pricing Solution, I would like to price the contents of the shopping basket.
+Feature: As a Pricing Solution, I would like to price the products of the shopping basket.
 
   Background:
     Given a list of products and their prices

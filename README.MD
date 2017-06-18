@@ -32,9 +32,9 @@ No logging, web, or persistance layer added, focusing on the created classes and
 
 | REST Resource | URI           | What it does|
   | ------------- | ------------- | ------------ |
-  | Product      | POST: /basket/products  | Add products to be priced, Basket.addProducts will be called
-  | Discount      | POST: /basket/discounts      |Add discounts to be priced, Basket.addDiscounts will be called
-  | Pricing Summary | GET: /basket/pricingsummary     |Getting the pricing summary depending on added products and discounts
+  | Product      | POST: /basket/products  | Add products to the basket, Basket#addProducts(List<Product>) will be called
+  | Discount      | POST: /basket/discounts      |Add discounts to the basket, Basket#addDiscounts(Set<Discount>) will be called
+  | Pricing Summary | GET: /basket/pricingsummary     |Getting the pricing summary depending on the added products and discounts, Basket#createPricingSummary() will be called
   
   
   Removing products to be priced and discounts are not implemented.
