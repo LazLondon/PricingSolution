@@ -13,10 +13,10 @@ public class StringToMapConverter extends Transformer<Map<String, Double>> {
     public Map<String, Double> transform(String s) {
         Map<String, Double> map = new HashMap<>();
 
-        String discountsKeyValue[] = s.trim().split("===");
+        String discountsKeyValue[] = s.split("===");
 
         for (String discountKeyValue : discountsKeyValue) {
-            String keyValue[] = discountKeyValue.trim().split("->");
+            String keyValue[] = discountKeyValue.split("->");
             String key = keyValue[0].trim();
             Double value = Double.valueOf(keyValue[1]);
             map.put(key, value);

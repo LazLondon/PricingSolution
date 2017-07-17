@@ -16,14 +16,12 @@ public class Discount {
     private final BiFunction<Product, List<Product>, Double> algorithm;
 
     public Discount(Product product, String message, BiFunction<Product, List<Product>, Double> algorithm) {
-        this.product = new Product(product);
+        this.product = product;
         this.message = message;
         this.algorithm = algorithm;
     }
 
-    public Product getProduct() {
-        return new Product(product);
-    }
+    public Product getProduct() { return product; }
 
     public String getMessage() {
         return message;

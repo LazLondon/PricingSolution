@@ -25,12 +25,6 @@ public class Product {
         this.amount = amount;
     }
 
-    public Product(Product p) {
-        name = p.getName();
-        unitPrice = p.getUnitPrice();
-        amount = p.getAmount();
-    }
-
     public String getName() {
         return name;
     }

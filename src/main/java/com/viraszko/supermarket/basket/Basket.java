@@ -3,6 +3,7 @@ package com.viraszko.supermarket.basket;
 import com.viraszko.supermarket.basket.discount.Discount;
 import net.jcip.annotations.ThreadSafe;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -10,7 +11,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static com.viraszko.supermarket.basket.utility.Utility.round;
-import static java.util.stream.Collectors.summingDouble;
 import static java.util.stream.Collectors.toMap;
 
 /**
@@ -19,12 +19,10 @@ import static java.util.stream.Collectors.toMap;
 @ThreadSafe
 public final class Basket {
     private final List<Product> products;
-    private final Map<String, Double> savings;
     private final Set<Discount> discounts;
 
     public Basket() {
         products = new CopyOnWriteArrayList<>();
-        savings = new ConcurrentHashMap<>();
         discounts = ConcurrentHashMap.newKeySet();
     }
 
@@ -37,6 +35,7 @@ public final class Basket {
     }
 
     public PricingSummary createPricingSummary() {
+        Map<String, Double> savings = new HashMap<>();
         double subTotal = products.stream().mapToDouble(Product::getPrice).sum();
 
         Map<String, Double> tempSavings = discounts.stream().collect(toMap(d -> d.getProduct().getName() + " " + d.getMessage(), d -> d.savings(products)));

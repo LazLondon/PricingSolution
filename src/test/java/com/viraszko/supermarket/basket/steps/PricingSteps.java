@@ -40,7 +40,7 @@ public class PricingSteps {
     }
 
     @When("^I receive a list of (.*)$")
-    public void addSelectedProductsToPricing(List<String> selectedProductsNameAmount) throws Throwable {
+    public void addSelectedProductsToBasket(List<String> selectedProductsNameAmount) throws Throwable {
         List<Product> selectedProducts = new ArrayList<>();
         for (String selectedProductNameAmount : selectedProductsNameAmount) {
             String nameAmount[] = selectedProductNameAmount.split("\\s*-\\s*");
@@ -74,9 +74,9 @@ public class PricingSteps {
 
             BiFunction<Product, List<Product>, Double> algorithm;
             if(xy[1].contains("£")) {
-                algorithm = new XforYPoundsDiscountAlgorithm(Long.parseLong(xy[0].trim()), Double.parseDouble(xy[1].replaceFirst("£", "").trim()));
+                algorithm = new XforYPoundsDiscountAlgorithm(x, Double.parseDouble(xy[1].replaceFirst("£", "").trim()));
             } else {
-                algorithm = new XforYDiscountAlgorithm(Long.parseLong(xy[0].trim()), Long.parseLong(xy[1].trim()));
+                algorithm = new XforYDiscountAlgorithm(x, Long.parseLong(xy[1].trim()));
             }
 
             discounts.add(new Discount(new Product(productName, pricelist.get(productName)), discountMessage, algorithm));
